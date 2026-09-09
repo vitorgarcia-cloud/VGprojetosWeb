@@ -1,0 +1,133 @@
+.services-page {
+  width: 100%;
+}
+
+.services-hero {
+  padding: 80px 0 60px;
+  background: radial-gradient(circle at 50% 0%, rgba(35, 41, 54, 0.3) 0%, rgba(11, 12, 16, 0.95) 100%);
+  border-bottom: 1px solid var(--border-light);
+  position: center;
+}
+
+.services-hero-content {
+  max-width: 920px;
+}
+
+.services-page-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 16px 0;
+}
+
+.services-company-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+.services-pillars-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-light);
+}
+
+.pillar-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.pillar-num {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent-white);
+  opacity: 0.6;
+}
+
+.pillar-item h4 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.pillar-item p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* Grid Section (4 cards por linha) */
+.services-grid-section {
+  padding: 80px 0 100px;
+}
+
+.grid-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.grid-section-header h2 {
+  font-size: 1.8rem;
+  margin-top: 8px;
+}
+
+.grid-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.services-grid-4-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.services-footer-cta {
+  margin-top: 64px;
+  padding: 40px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.services-footer-cta p {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+@media (max-width: 1100px) {
+  .services-grid-4-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services-pillars-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .services-grid-4-container {
+    grid-template-columns: 1fr;
+  }
+
+  .services-footer-cta {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .services-footer-cta .btn {
+    width: 100%;
+  }
+}
