@@ -7,6 +7,12 @@
   background: radial-gradient(circle at 50% 0%, rgba(35, 41, 54, 0.3) 0%, rgba(11, 12, 16, 0.95) 100%);
   border-bottom: 1px solid var(--border-light);
   position: center;
+  background-image: url('vgBack2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .services-hero-content {
