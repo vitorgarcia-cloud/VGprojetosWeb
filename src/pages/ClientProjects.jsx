@@ -89,27 +89,18 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
       {/* Hero da Página de Projetos */}
       <section className="client-projects-hero">
         <div className="container">
-          <div className="projects-hero-breadcrumb">
-            <button
-              type="button"
-              className="breadcrumb-back-btn"
-              onClick={() => onNavigate('servicos')}
-            >
-              &larr; Voltar para Serviços
-            </button>
-            <span className="breadcrumb-separator">/</span>
-            <span className="breadcrumb-current">Casos de Sucesso & Metodologia</span>
-          </div>
 
           <div className="projects-hero-main">
             <h1 className="projects-page-title">
               Projetos Realizados & Metodologia Técnica
             </h1>
+            <br />
             <p className="projects-page-lead">
               Conheça os desafios reais enfrentados por nossos clientes e como a metodologia
               estruturada da <strong>VG Projetos</strong> (Problema &rarr; Solução Técnica &rarr; Resultado)
               garante precisão geométrica, conformidade normativa e zero retrabalho.
             </p>
+            <br />
           </div>
 
           {/* Barra de Filtro Rápido por Cliente - Apenas Ícones */}
@@ -154,25 +145,20 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
                   <div className="client-logo-box-30-card">
                     <ClientLogo iconType={client.logoIcon} />
                   </div>
-                  <div>
-                    <div className="client-group-title-row">
-                      <h2 className="client-group-name">{client.name}</h2>
-                      <span className="badge client-segment-badge">{client.segment}</span>
-                    </div>
+                  <div className="client-group-info">
+                    <h2 className="client-group-name">{client.name}</h2>
                     <p className="client-group-desc">{client.description}</p>
+                    <div className="client-services-types-pills">
+                      {client.projects.map((project) => (
+                        <span key={project.id} className="service-type-pill">
+                          {project.serviceTypeName}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Tipos de serviços prestados para este cliente */}
-                <div className="client-group-services-types">
-                  <div className="client-services-types-pills">
-                    {client.projects.map((project) => (
-                      <span key={project.id} className="service-type-pill">
-                        {project.serviceTypeName}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <span className="badge client-segment-badge">{client.segment}</span>
               </div>
 
               {/* Serviços Prestados para este Cliente */}

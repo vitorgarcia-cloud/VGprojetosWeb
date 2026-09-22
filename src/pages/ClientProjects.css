@@ -162,18 +162,17 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding-bottom: 28px;
+  padding-bottom: 24px;
   border-bottom: 1px solid var(--border-light);
   margin-bottom: 36px;
-  flex-wrap: wrap;
   gap: 20px;
 }
 
 .client-group-brand {
   display: flex;
-  gap: 18px;
+  gap: 16px;
   align-items: flex-start;
-  max-width: 800px;
+  flex: 1;
 }
 
 .client-logo-box-30-card {
@@ -188,55 +187,69 @@
   align-items: center;
   justify-content: center;
   padding: 7px;
+  margin-top: 2px;
 }
 
-.client-group-title-row {
+.client-group-info {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 6px;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
 }
 
 .client-group-name {
-  font-size: 1.6rem;
-}
-
-.client-segment-badge {
-  font-size: 0.72rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
 }
 
 .client-group-desc {
   font-size: 0.92rem;
   color: var(--text-secondary);
-}
-
-.client-group-services-types {
-  display: flex;
-  align-items: center;
+  line-height: 1.4;
 }
 
 .client-services-types-pills {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: flex-end;
+  margin-top: 10px;
 }
 
 .service-type-pill {
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 500;
   padding: 6px 14px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-sm);
-  color: var(--accent-silver);
+  color: var(--text-secondary);
   white-space: nowrap;
 }
 
+.client-segment-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-medium);
+  border-radius: 9999px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 @media (max-width: 768px) {
-  .client-services-types-pills {
-    justify-content: flex-start;
+  .client-group-header {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .client-segment-badge {
+    align-self: flex-start;
   }
 }
 
