@@ -1,0 +1,154 @@
+.clients-carousel-section {
+  margin-top: 60px;
+  padding: 40px 32px;
+  padding-top: 10px;
+  background-color: rgba(19, 22, 28, 0.7);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.clients-carousel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.clients-header-left {
+  max-width: 900px;
+}
+
+.clients-carousel-title {
+  font-size: 1.6rem;
+  margin: 10px 0 6px;
+}
+
+.clients-carousel-subtitle {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.btn-sm-viewall {
+  font-size: 0.85rem;
+  padding: 10px 20px;
+  white-space: nowrap;
+}
+
+/* Marquee / Carrossel Infinito */
+.clients-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 12px 0;
+  mask-image: linear-gradient(to left,
+      transparent,
+      black 8%,
+      black 90%,
+      transparent);
+  -webkit-mask-image: linear-gradient(to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent);
+}
+
+.clients-marquee-track {
+  display: flex;
+  gap: 50px;
+  width: max-content;
+  animation: scrollMarquee 35s linear infinite;
+}
+
+.clients-marquee-container:hover .clients-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-33.333% - 6.66px));
+  }
+}
+
+/* Item de logotipo único no carrossel */
+.client-carousel-item-only-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.client-carousel-item-only-logo:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-white);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.1);
+}
+
+/* Logo container com dimensões exatas de 30x30 */
+.client-logo-box-30 {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+  max-width: 30px;
+  max-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.client-logo-badge-30 {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.client-logo-badge-30 svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.clients-carousel-footer-note {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .clients-carousel-section {
+    padding: 28px 20px;
+    margin-top: 40px;
+  }
+
+  .clients-carousel-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-sm-viewall {
+    width: 100%;
+    text-align: center;
+  }
+}

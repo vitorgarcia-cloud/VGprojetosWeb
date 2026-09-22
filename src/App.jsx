@@ -3,19 +3,30 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import Services from './pages/Services';
+import ClientProjects from './pages/ClientProjects';
 import Contact from './pages/Contact';
 
 export default function App() {
   const [activePage, setActivePage] = useState('inicio');
+  const [navigationParams, setNavigationParams] = useState({});
 
-  const handleNavigate = (page) => {
+  const handleNavigate = (page, params = {}) => {
     setActivePage(page);
+    setNavigationParams(params || {});
   };
 
   const renderActivePage = () => {
     switch (activePage) {
       case 'servicos':
         return <Services onNavigate={handleNavigate} />;
+      case 'projetos-clientes':
+        return (
+          <ClientProjects
+            onNavigate={handleNavigate}
+            targetServiceId={navigationParams.targetServiceId}
+            targetClientId={navigationParams.targetClientId}
+          />
+        );
       case 'contato':
         return <Contact />;
       case 'inicio':

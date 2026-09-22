@@ -77,6 +77,7 @@ export default function Home({ onNavigate }) {
                 key={service.id}
                 service={service}
                 onSelect={() => onNavigate('contato')}
+                onViewExample={(serviceId) => onNavigate('projetos-clientes', { targetServiceId: serviceId })}
               />
             ))}
           </div>

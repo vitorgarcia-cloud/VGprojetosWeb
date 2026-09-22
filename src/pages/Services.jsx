@@ -2,6 +2,7 @@ import React from 'react';
 import { companyData } from '../data/companyData';
 import { servicesData } from '../data/servicesData';
 import ServiceCard from '../components/common/ServiceCard';
+import ClientsCarousel from '../components/common/ClientsCarousel';
 import './Services.css';
 
 export default function Services({ onNavigate }) {
@@ -55,7 +56,7 @@ export default function Services({ onNavigate }) {
               <h2>Soluções Técnicas Sob Demanda</h2>
             </div>
             <p className="grid-hint">
-              Passe o mouse sobre os cards para visualizar detalhes do serviço.
+              Passe o mouse sobre os cards para visualizar detalhes do serviço ou clique em "Ver Exemplo" para ir ao caso prático.
             </p>
           </div>
 
@@ -65,21 +66,17 @@ export default function Services({ onNavigate }) {
                 key={service.id}
                 service={service}
                 onSelect={() => onNavigate('contato')}
+                onViewExample={(serviceId) => onNavigate('projetos-clientes', { targetServiceId: serviceId })}
               />
             ))}
           </div>
 
-          {/* Rodapé da seção de serviços com CTA */}
-          <div className="services-footer-cta">
-            <p>Precisa de um serviço específico ou desenvolvimento sob medida?</p>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => onNavigate('contato')}
-            >
-              Falar com um Especialista
-            </button>
+          {/* Carrossel de Clientes e Exemplos Práticos */}
+          <div className="clients-examples">
+            <ClientsCarousel onNavigate={onNavigate} />
           </div>
+
+    
         </div>
       </section>
     </div>
