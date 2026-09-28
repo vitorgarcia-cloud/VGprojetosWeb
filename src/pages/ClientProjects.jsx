@@ -3,9 +3,10 @@ import { clientsProjectsData } from '../data/clientProjectsData';
 import { ClientLogo } from '../components/common/ClientsCarousel';
 import './ClientProjects.css';
 
-// Componente Placeholder de Imagem Técnica (Antes / Depois)
+// Componente de Imagem Técnica (Antes / Depois)
 function ProjectImagePlaceholder({ type, imageInfo }) {
   const isBefore = type === 'before';
+  const imageUrl = imageInfo?.url || imageInfo?.image;
 
   return (
     <div className={`project-image-card ${isBefore ? 'image-before' : 'image-after'}`}>
@@ -17,37 +18,47 @@ function ProjectImagePlaceholder({ type, imageInfo }) {
       </div>
 
       <div className="image-placeholder-canvas">
-        <div className="blueprint-grid" />
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt={imageInfo.title || (isBefore ? 'Antes' : 'Depois')}
+            className="project-real-image"
+          />
+        ) : (
+          <>
+            <div className="blueprint-grid" />
 
-        {/* Gráfico / Ícone técnico simulando arquivo CAD */}
-        <div className="placeholder-visual">
-          {isBefore ? (
-            <svg viewBox="0 0 120 120" className="cad-icon-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="25" y="25" width="70" height="70" stroke="#f87171" strokeWidth="1.5" strokeDasharray="4 4" />
-              <path d="M25 25L95 95M95 25L25 95" stroke="#f87171" strokeWidth="1.2" strokeOpacity="0.5" />
-              <circle cx="60" cy="60" r="18" stroke="#f87171" strokeWidth="1.5" />
-              <text x="60" y="112" textAnchor="middle" fill="#f87171" fontSize="9" fontFamily="monospace">INTERFERÊNCIA / ERRO</text>
-            </svg>
-          ) : (
-            <svg viewBox="0 0 120 120" className="cad-icon-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="60,20 95,40 95,80 60,100 25,80 25,40" stroke="#4ade80" strokeWidth="1.8" fill="rgba(74, 222, 128, 0.08)" />
-              <line x1="60" y1="20" x2="60" y2="100" stroke="#4ade80" strokeWidth="1.2" strokeDasharray="3 2" />
-              <line x1="25" y1="40" x2="95" y2="80" stroke="#4ade80" strokeWidth="1" strokeOpacity="0.4" />
-              <circle cx="60" cy="60" r="12" fill="none" stroke="#ffffff" strokeWidth="1.4" />
-              <text x="60" y="115" textAnchor="middle" fill="#4ade80" fontSize="9" fontFamily="monospace">MODELO APROVADO ISO</text>
-            </svg>
-          )}
-        </div>
+            {/* Gráfico / Ícone técnico simulando arquivo CAD quando não há imagem */}
+            <div className="placeholder-visual">
+              {isBefore ? (
+                <svg viewBox="0 0 120 120" className="cad-icon-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="25" y="25" width="70" height="70" stroke="#f87171" strokeWidth="1.5" strokeDasharray="4 4" />
+                  <path d="M25 25L95 95M95 25L25 95" stroke="#f87171" strokeWidth="1.2" strokeOpacity="0.5" />
+                  <circle cx="60" cy="60" r="18" stroke="#f87171" strokeWidth="1.5" />
+                  <text x="60" y="112" textAnchor="middle" fill="#f87171" fontSize="9" fontFamily="monospace">INTERFERÊNCIA / ERRO</text>
+                </svg>
+              ) : (
+                <svg viewBox="0 0 120 120" className="cad-icon-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polygon points="60,20 95,40 95,80 60,100 25,80 25,40" stroke="#4ade80" strokeWidth="1.8" fill="rgba(74, 222, 128, 0.08)" />
+                  <line x1="60" y1="20" x2="60" y2="100" stroke="#4ade80" strokeWidth="1.2" strokeDasharray="3 2" />
+                  <line x1="25" y1="40" x2="95" y2="80" stroke="#4ade80" strokeWidth="1" strokeOpacity="0.4" />
+                  <circle cx="60" cy="60" r="12" fill="none" stroke="#ffffff" strokeWidth="1.4" />
+                  <text x="60" y="115" textAnchor="middle" fill="#4ade80" fontSize="9" fontFamily="monospace">MODELO APROVADO ISO</text>
+                </svg>
+              )}
+            </div>
 
-        <div className="image-placeholder-info">
-          <span className="image-placeholder-label">Espaço para Imagem / Print 3D</span>
-          <span className="image-placeholder-dims">(Substituir com arquivo de imagem)</span>
-        </div>
+            <div className="image-placeholder-info">
+              <span className="image-placeholder-label">Espaço para Imagem / Print 3D</span>
+              <span className="image-placeholder-dims">(Substituir com arquivo de imagem)</span>
+            </div>
+          </>
+        )}
       </div>
 
       <div className="image-card-caption">
-        <h5 className="image-caption-title">{imageInfo.title}</h5>
-        <p className="image-caption-desc">{imageInfo.description}</p>
+        <h5 className="image-caption-title">{imageInfo?.title}</h5>
+        <p className="image-caption-desc">{imageInfo?.description}</p>
       </div>
     </div>
   );
@@ -122,7 +133,7 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
                   onClick={() => setSelectedFilter(client.id)}
                   title={`${client.name} (${client.segment})`}
                 >
-                  <ClientLogo iconType={client.logoIcon} />
+                  <ClientLogo iconType={client.logoIcon} logoUrl={client.logoUrl} />
                 </button>
               ))}
             </div>
@@ -143,7 +154,7 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
               <div className="client-group-header">
                 <div className="client-group-brand">
                   <div className="client-logo-box-30-card">
-                    <ClientLogo iconType={client.logoIcon} />
+                    <ClientLogo iconType={client.logoIcon} logoUrl={client.logoUrl} />
                   </div>
                   <div className="client-group-info">
                     <h2 className="client-group-name">{client.name}</h2>

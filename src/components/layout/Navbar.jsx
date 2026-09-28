@@ -28,11 +28,8 @@ export default function Navbar({ activePage, onNavigate }) {
           title="VG Projetos - Página Inicial"
         >
           <div className="logo-placeholder">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="11%" height="11%">
-              <polygon points="250,70 423,170 250,270 77,170" fill="#f4f5f7"/>
-              <polygon points="77,170 250,270 250,470 77,370" fill="#8e9297"/>
-              <polygon points="250,270 423,170 423,370 250,470" fill="#bcc0c5"/>
-            </svg>
+            <img src="vgLogo.png" width={35} />
+
             <div className="logo-text">
               <span className="brand-name">VG</span>
               <span className="brand-sub">PROJETOS</span>

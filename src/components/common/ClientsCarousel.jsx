@@ -2,11 +2,27 @@ import React from 'react';
 import { clientsProjectsData } from '../../data/clientProjectsData';
 import './ClientsCarousel.css';
 
-// Ícones SVG estilizados para os logotipos dos clientes (renderizados exatamente em 30x30)
-export function ClientLogo({ iconType, className = '' }) {
+// Componente de Logotipo do Cliente (suporta imagem ou ícone SVG)
+export function ClientLogo({ iconType, logoUrl, className = '' }) {
+  const isImageFile = (src) => typeof src === 'string' && (src.includes('/') || src.endsWith('.jpg') || src.endsWith('.png') || src.endsWith('.jpeg') || src.endsWith('.svg') || src.endsWith('.webp'));
+  const imageSource = logoUrl || (isImageFile(iconType) ? (iconType.startsWith('/') ? iconType : `/${iconType}`) : null);
+
+  if (imageSource) {
+    return (
+      <div className={`client-logo-badge-30 ${className}`} style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: 0 }}>
+        <img
+          src={imageSource}
+          alt="Logo Cliente"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        />
+      </div>
+    );
+  }
+
   const renderIcon = () => {
     switch (iconType) {
-      case 'gear-circuit':
+      case 'nei-ultrassom':
+      case 'nei':
         return (
           <svg viewBox="0 0 30 30" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="15" cy="15" r="13" stroke="#e0e6ed" strokeWidth="1.5" strokeDasharray="3 2" />
@@ -105,7 +121,7 @@ export default function ClientsCarousel({ onNavigate }) {
               tabIndex={0}
             >
               <div className="client-logo-box-30">
-                <ClientLogo iconType={client.logoIcon} />
+                <ClientLogo iconType={client.logoIcon} logoUrl={client.logoUrl} />
               </div>
             </div>
           ))}

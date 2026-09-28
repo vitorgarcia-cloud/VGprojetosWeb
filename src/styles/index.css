@@ -20,7 +20,7 @@
   --accent-glow: rgba(255, 255, 255, 0.05);
 
   /* Tipografia */
-  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Efeitos e Transições */
@@ -41,7 +41,9 @@
 }
 
 /* Reset Global */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -90,7 +92,12 @@ body {
 }
 
 /* Tipografia Base */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   color: var(--text-primary);
   font-weight: 600;
@@ -111,7 +118,10 @@ ul {
   list-style: none;
 }
 
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
   font-family: inherit;
 }
 
@@ -178,6 +188,7 @@ button, input, textarea, select {
     opacity: 0;
     transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
