@@ -1,4 +1,3 @@
-import React from 'react';
 import { clientsProjectsData } from '../../data/clientProjectsData';
 import './ClientsCarousel.css';
 
@@ -86,13 +85,6 @@ export default function ClientsCarousel({ onNavigate }) {
   const handleClientClick = (clientId) => {
     if (onNavigate) {
       onNavigate('projetos-clientes', { targetClientId: clientId });
-    }
-  };
-
-  const handleViewAllClick = (e) => {
-    e.preventDefault();
-    if (onNavigate) {
-      onNavigate('projetos-clientes');
     }
   };
 

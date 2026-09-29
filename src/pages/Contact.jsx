@@ -1,4 +1,3 @@
-import React from 'react';
 import { companyData } from '../data/companyData';
 import ContactForm from '../components/contact/ContactForm';
 import './Contact.css';

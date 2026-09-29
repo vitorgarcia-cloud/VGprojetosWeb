@@ -3,7 +3,10 @@
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   padding: 36px;
-  height: 650px;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   box-shadow: var(--shadow-sm);
 }
 
@@ -54,8 +57,8 @@
 
 .form-group textarea {
   resize: vertical;
-  min-height: 180px;
-  max-height: 200px;
+  min-height: 140px;
+  max-height: 240px;
 }
 
 .form-group select {
@@ -74,6 +77,12 @@
   margin-top: 8px;
 }
 
+.btn-submit-form:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Estado de Sucesso */
 .form-success-card {
   text-align: center;
   padding: 40px 20px;
@@ -84,8 +93,13 @@
 }
 
 .success-icon {
-  width: 54px;
-  height: 54px;
+  width: 60px;
+  height: 60px;
+}
+
+.success-icon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .form-success-card h3 {
@@ -95,8 +109,59 @@
 
 .form-success-card p {
   color: var(--text-secondary);
-  max-width: 420px;
-  margin-bottom: 12px;
+  max-width: 440px;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.form-success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.btn-whatsapp-success {
+  background-color: #25D366;
+  color: #ffffff;
+  border: 1px solid #25D366;
+  padding: 12px 20px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.btn-whatsapp-success:hover {
+  background-color: #20ba5a;
+  border-color: #20ba5a;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+}
+
+/* Alerta de Erro */
+.form-error-alert {
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.error-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.82rem;
 }
 
 @media (max-width: 600px) {
@@ -105,6 +170,7 @@
   }
 
   .contact-form-container {
-    padding: 24px;
+    padding: 24px 16px;
+    min-height: auto;
   }
 }

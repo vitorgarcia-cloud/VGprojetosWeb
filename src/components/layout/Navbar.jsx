@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Navbar.css';
 
 export default function Navbar({ activePage, onNavigate }) {
@@ -28,7 +28,7 @@ export default function Navbar({ activePage, onNavigate }) {
           title="VG Projetos - Página Inicial"
         >
           <div className="logo-placeholder">
-            <img src="vgLogo.png" width={35} />
+            <img src="/vgLogo.png" alt="VG Projetos Logo" width={35} height={35} />
 
             <div className="logo-text">
               <span className="brand-name">VG</span>

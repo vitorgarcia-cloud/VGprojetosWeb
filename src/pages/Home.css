@@ -9,7 +9,7 @@
   background: radial-gradient(circle at 50% 20%, rgba(35, 41, 54, 0.45) 0%, rgba(11, 12, 16, 0.95) 80%);
   border-bottom: 1px solid var(--border-light);
   overflow: hidden;
-  background-image: url('vgWallpaper.jpeg');
+  background-image: url('/vgWallpaper.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

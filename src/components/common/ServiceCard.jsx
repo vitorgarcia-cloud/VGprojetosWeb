@@ -1,4 +1,3 @@
-import React from 'react';
 import './ServiceCard.css';
 
 export default function ServiceCard({ service, onSelect, onViewExample }) {
@@ -13,7 +12,7 @@ export default function ServiceCard({ service, onSelect, onViewExample }) {
     <div className="service-card" onClick={() => onSelect && onSelect(service)}>
       <div
         className="service-card-bg"
-        style={{ backgroundImage: `url(${service.image})` }}
+        style={{ backgroundImage: `url(${service.image?.startsWith('/') ? service.image : '/' + service.image})` }}
       >
         <div className="service-card-overlay" />
       </div>

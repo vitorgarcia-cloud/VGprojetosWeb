@@ -1,13 +1,7 @@
-import React from 'react';
 import { companyData } from '../../data/companyData';
 import './Footer.css';
 
-export default function Footer({ onNavigate }) {
-  const handleNavClick = (pageId, e) => {
-    e.preventDefault();
-    onNavigate(pageId);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+export default function Footer() {
 
   return (
     <footer>

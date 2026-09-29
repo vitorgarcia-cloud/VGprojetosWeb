@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import WhatsAppButton from './components/common/WhatsAppButton';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import ClientProjects from './pages/ClientProjects';
@@ -44,6 +45,9 @@ export default function App() {
       <main className="main-content">
         {renderActivePage()}
       </main>
+
+      {/* Botão Flutuante do WhatsApp (visível em todas as páginas, exceto na página dos clientes) */}
+      {activePage !== 'projetos-clientes' && <WhatsAppButton />}
 
       {/* Rodapé Padrão */}
       <Footer onNavigate={handleNavigate} />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { clientsProjectsData } from '../data/clientProjectsData';
 import { ClientLogo } from '../components/common/ClientsCarousel';
 import './ClientProjects.css';
@@ -70,25 +70,30 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
 
   // Efeito para rolar automaticamente até o serviço ou cliente alvo quando passado via navegação
   useEffect(() => {
+    let timer;
     if (targetServiceId) {
-      const element = document.getElementById(`service-type-${targetServiceId}`);
-      if (element) {
-        setHighlightedId(`service-type-${targetServiceId}`);
-        setTimeout(() => {
+      timer = setTimeout(() => {
+        const element = document.getElementById(`service-type-${targetServiceId}`);
+        if (element) {
+          setHighlightedId(`service-type-${targetServiceId}`);
           element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 150);
-      }
+        }
+      }, 100);
     } else if (targetClientId) {
-      const element = document.getElementById(`client-${targetClientId}`);
-      if (element) {
-        setHighlightedId(`client-${targetClientId}`);
-        setTimeout(() => {
+      timer = setTimeout(() => {
+        const element = document.getElementById(`client-${targetClientId}`);
+        if (element) {
+          setHighlightedId(`client-${targetClientId}`);
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 150);
-      }
+        }
+      }, 100);
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
   }, [targetServiceId, targetClientId]);
 
   const filteredClients = selectedFilter === 'all'

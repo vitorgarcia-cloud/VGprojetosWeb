@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { companyData } from '../../data/companyData';
 import './ContactForm.css';
 
@@ -11,61 +11,138 @@ export default function ContactForm({ preselectedService }) {
     detalhes: ''
   });
 
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({
+    submitting: false,
+    submitted: false,
+    error: false,
+    errorMessage: ''
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setStatus({ submitting: true, submitted: false, error: false, errorMessage: '' });
 
-    // Criação de link mailto com dados codificados para envio direto
-    const subject = encodeURIComponent(`[Orçamento] ${formData.servico} - ${formData.nome}`);
-    const body = encodeURIComponent(
-      `Olá VG Projetos,\n\nGostaria de solicitar um orçamento para:\n` +
-      `Serviço: ${formData.servico}\n` +
-      `Nome: ${formData.nome}\n` +
-      `E-mail: ${formData.email}\n` +
-      `Telefone/WhatsApp: ${formData.telefone}\n\n` +
-      `Detalhes do Projeto:\n${formData.detalhes}\n`
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${companyData.email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `[VG Projetos] Novo Orçamento: ${formData.servico} - ${formData.nome}`,
+          _template: 'table',
+          _captcha: 'false',
+          Nome: formData.nome,
+          Email: formData.email,
+          Telefone: formData.telefone,
+          Servico_Desejado: formData.servico,
+          Detalhes_do_Projeto: formData.detalhes
+        })
+      });
+
+      if (response.ok) {
+        setStatus({
+          submitting: false,
+          submitted: true,
+          error: false,
+          errorMessage: ''
+        });
+      } else {
+        throw new Error('Falha no envio do formulário. Tente novamente ou use o WhatsApp.');
+      }
+    } catch (err) {
+      console.error('Erro ao enviar formulário:', err);
+      // Fallback gracioso: permitir envio direto pelo WhatsApp ou Mailto
+      setStatus({
+        submitting: false,
+        submitted: false,
+        error: true,
+        errorMessage: 'Não foi possível conectar ao servidor no momento. Você pode falar conosco diretamente pelo WhatsApp ou reenviar.'
+      });
+    }
+  };
+
+  const getWhatsAppQuickLink = () => {
+    const text = encodeURIComponent(
+      `Olá VG Projetos!\n\n` +
+      `Gostaria de solicitar um orçamento:\n` +
+      `• Serviço: ${formData.servico}\n` +
+      `• Nome: ${formData.nome}\n` +
+      `• E-mail: ${formData.email}\n` +
+      `• Telefone: ${formData.telefone}\n` +
+      `• Detalhes: ${formData.detalhes || 'A combinar'}`
     );
-
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-      // Abre o cliente de e-mail padrão com a mensagem pronta
-      window.location.href = `mailto:${companyData.email}?subject=${subject}&body=${body}`;
-    }, 600);
+    return `https://wa.me/5516988779241?text=${text}`;
   };
 
   return (
     <div className="contact-form-container">
-      {submitted ? (
+      {status.submitted ? (
         <div className="form-success-card fade-in">
           <div className="success-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="12" r="10" stroke="#52c41a" />
-              <path d="M8 12l3 3 5-5" stroke="#52c41a" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="12" cy="12" r="10" stroke="#25D366" />
+              <path d="M8 12l3 3 5-5" stroke="#25D366" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
-          <h3>Solicitação Preparada!</h3>
+          <h3>Solicitação Enviada com Sucesso!</h3>
           <p>
-            Abrimos o seu aplicativo de e-mail para enviar a mensagem diretamente para <strong>{companyData.email}</strong>.
+            Seu pedido de orçamento foi encaminhado diretamente para <strong>{companyData.email}</strong>.
+            Nossa equipe técnica entrará em contato em breve.
           </p>
-          <button 
-            type="button" 
-            className="btn btn-secondary"
-            onClick={() => setSubmitted(false)}
-          >
-            Enviar Nova Mensagem
-          </button>
+          
+          <div className="form-success-actions">
+            <a
+              href={getWhatsAppQuickLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-whatsapp-success"
+            >
+              Agilizar pelo WhatsApp (+55 16 98877-9241)
+            </a>
+
+            <button 
+              type="button" 
+              className="btn btn-secondary"
+              onClick={() => {
+                setFormData({
+                  nome: '',
+                  email: '',
+                  telefone: '',
+                  servico: 'Modelagem 3D Paramétrica',
+                  detalhes: ''
+                });
+                setStatus({ submitting: false, submitted: false, error: false, errorMessage: '' });
+              }}
+            >
+              Enviar Outra Mensagem
+            </button>
+          </div>
         </div>
       ) : (
         <form className="budget-form" onSubmit={handleSubmit}>
+          {status.error && (
+            <div className="form-error-alert fade-in">
+              <p>{status.errorMessage}</p>
+              <div className="error-actions">
+                <a
+                  href={getWhatsAppQuickLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-sm"
+                >
+                  Enviar via WhatsApp Agora
+                </a>
+              </div>
+            </div>
+          )}
+
           <div className="form-group">
             <label htmlFor="nome">Nome Completo / Empresa *</label>
             <input
@@ -99,7 +176,7 @@ export default function ContactForm({ preselectedService }) {
                 id="telefone"
                 name="telefone"
                 required
-                placeholder="(00) 00000-0000"
+                placeholder="(16) 98877-9241"
                 value={formData.telefone}
                 onChange={handleChange}
               />
@@ -141,9 +218,9 @@ export default function ContactForm({ preselectedService }) {
           <button 
             type="submit" 
             className="btn btn-primary btn-submit-form"
-            disabled={loading}
+            disabled={status.submitting}
           >
-            {loading ? 'Preparando...' : 'Enviar Solicitação de Orçamento'}
+            {status.submitting ? 'Enviando Proposta...' : 'Enviar Solicitação de Orçamento'}
           </button>
         </form>
       )}

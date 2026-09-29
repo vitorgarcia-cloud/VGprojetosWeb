@@ -1,4 +1,3 @@
-import React from 'react';
 import { companyData } from '../data/companyData';
 import { servicesData } from '../data/servicesData';
 import ServiceCard from '../components/common/ServiceCard';
