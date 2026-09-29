@@ -14,7 +14,7 @@ function ProjectImagePlaceholder({ type, imageInfo }) {
         <span className={`image-tag ${isBefore ? 'tag-before' : 'tag-after'}`}>
           {isBefore ? 'ANTES' : 'DEPOIS'}
         </span>
-        <span className="cad-blueprint-indicator">CAD REF #{isBefore ? '01-REV-0' : '02-FINAL'}</span>
+        <span className="cad-blueprint-indicator">CAD IMG REF# </span>
       </div>
 
       <div className="image-placeholder-canvas">
@@ -108,7 +108,7 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
             <br />
             <p className="projects-page-lead">
               Conheça os desafios reais enfrentados por nossos clientes e como a metodologia
-              estruturada da <strong>VG Projetos</strong> (Problema &rarr; Solução Técnica &rarr; Resultado)
+              estruturada da <strong>VG PROJETOS</strong> (Problema &rarr; Solução Técnica &rarr; Resultado)
               garante precisão geométrica, conformidade normativa e zero retrabalho.
             </p>
             <br />
@@ -199,7 +199,7 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
                         <div className="methodology-card-header">
                           <span className="methodology-step">01. O Problema</span>
                         </div>
-                        <h4 className="methodology-title">Gargalo / Desafio Inicial</h4>
+                        <h4 className="methodology-title">Desafio Inicial</h4>
                         <p className="methodology-text">{project.problem}</p>
                       </div>
 
@@ -208,7 +208,7 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
                         <div className="methodology-card-header">
                           <span className="methodology-step">02. Solução Técnica</span>
                         </div>
-                        <h4 className="methodology-title">Engenharia CAD & Normas</h4>
+                        <h4 className="methodology-title">Engenharia Aplicada</h4>
                         <p className="methodology-text">{project.technicalSolution}</p>
                       </div>
 
@@ -225,8 +225,7 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
                     {/* Comparativo Visual: 2 Imagens (Antes e Depois) */}
                     <div className="case-study-images-section">
                       <div className="case-images-header">
-                        <h4>Evidência Visual & Modelagem CAD (Antes e Depois)</h4>
-                        <span className="case-images-note">Placeholders prontos para substituição</span>
+                        <h4>Evidência Visual - (Antes e Depois)</h4>
                       </div>
 
                       <div className="before-after-grid">
