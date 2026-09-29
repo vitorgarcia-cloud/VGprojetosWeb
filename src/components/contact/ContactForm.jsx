@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { companyData } from '../../data/companyData';
 import './ContactForm.css';
 
@@ -27,43 +28,39 @@ export default function ContactForm({ preselectedService }) {
     e.preventDefault();
     setStatus({ submitting: true, submitted: false, error: false, errorMessage: '' });
 
-    try {
-      const response = await fetch(`https://formsubmit.co/ajax/${companyData.email}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: `[VG Projetos] Novo Orçamento: ${formData.servico} - ${formData.nome}`,
-          _template: 'table',
-          _captcha: 'false',
-          Nome: formData.nome,
-          Email: formData.email,
-          Telefone: formData.telefone,
-          Servico_Desejado: formData.servico,
-          Detalhes_do_Projeto: formData.detalhes
-        })
-      });
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_qslvgpy';
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-      if (response.ok) {
-        setStatus({
-          submitting: false,
-          submitted: true,
-          error: false,
-          errorMessage: ''
-        });
-      } else {
-        throw new Error('Falha no envio do formulário. Tente novamente ou use o WhatsApp.');
+    try {
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('Configurações de e-mail incompletas. Verifique o arquivo .env.');
       }
+
+      const templateParams = {
+        from_name: formData.nome,
+        from_email: formData.email,
+        phone: formData.telefone,
+        service: formData.servico,
+        message: formData.detalhes,
+        to_email: companyData.email
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      setStatus({
+        submitting: false,
+        submitted: true,
+        error: false,
+        errorMessage: ''
+      });
     } catch (err) {
-      console.error('Erro ao enviar formulário:', err);
-      // Fallback gracioso: permitir envio direto pelo WhatsApp ou Mailto
+      console.error('Erro ao enviar e-mail via EmailJS:', err);
       setStatus({
         submitting: false,
         submitted: false,
         error: true,
-        errorMessage: 'Não foi possível conectar ao servidor no momento. Você pode falar conosco diretamente pelo WhatsApp ou reenviar.'
+        errorMessage: 'Não foi possível conectar ao servidor no momento. Você pode falar conosco diretamente pelo WhatsApp ou tentar novamente.'
       });
     }
   };
@@ -96,7 +93,7 @@ export default function ContactForm({ preselectedService }) {
             Seu pedido de orçamento foi encaminhado diretamente para <strong>{companyData.email}</strong>.
             Nossa equipe técnica entrará em contato em breve.
           </p>
-          
+
           <div className="form-success-actions">
             <a
               href={getWhatsAppQuickLink()}
@@ -107,8 +104,8 @@ export default function ContactForm({ preselectedService }) {
               Agilizar pelo WhatsApp (+55 16 98877-9241)
             </a>
 
-            <button 
-              type="button" 
+            <button
+              type="button"
               className="btn btn-secondary"
               onClick={() => {
                 setFormData({
@@ -215,8 +212,8 @@ export default function ContactForm({ preselectedService }) {
             ></textarea>
           </div>
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="btn btn-primary btn-submit-form"
             disabled={status.submitting}
           >
