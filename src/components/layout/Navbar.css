@@ -64,8 +64,9 @@
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: 40px;
   margin-right: 180px;
+  width: 110px;
 }
 
 .nav-item {
