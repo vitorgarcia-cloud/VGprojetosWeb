@@ -29,12 +29,12 @@ export default function ContactForm({ preselectedService }) {
     setStatus({ submitting: true, submitted: false, error: false, errorMessage: '' });
 
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_qslvgpy';
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_a71wf8o';
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'huJ1IcqE2Bk8dwzF9';
 
     try {
       if (!serviceId || !templateId || !publicKey) {
-        throw new Error('Configurações de e-mail incompletas. Verifique o arquivo .env.');
+        throw new Error('Configurações de e-mail incompletas. Verifique o arquivo .env ou as variáveis de ambiente.');
       }
 
       const templateParams = {
@@ -43,7 +43,11 @@ export default function ContactForm({ preselectedService }) {
         phone: formData.telefone,
         service: formData.servico,
         message: formData.detalhes,
-        to_email: companyData.email
+        to_email: companyData.email,
+        // Campos adicionais comuns para compatibilidade com templates do EmailJS
+        reply_to: formData.email,
+        name: formData.nome,
+        email: formData.email
       };
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
@@ -56,11 +60,14 @@ export default function ContactForm({ preselectedService }) {
       });
     } catch (err) {
       console.error('Erro ao enviar e-mail via EmailJS:', err);
+      const detail = err?.text || err?.message || '';
       setStatus({
         submitting: false,
         submitted: false,
         error: true,
-        errorMessage: 'Não foi possível conectar ao servidor no momento. Você pode falar conosco diretamente pelo WhatsApp ou tentar novamente.'
+        errorMessage: detail.includes('Configurações')
+          ? detail
+          : 'Não foi possível enviar o formulário automaticamente no momento. Você pode entrar em contato direto pelo WhatsApp ou tentar novamente.'
       });
     }
   };
@@ -101,7 +108,7 @@ export default function ContactForm({ preselectedService }) {
               rel="noopener noreferrer"
               className="btn btn-whatsapp-success"
             >
-              Agilizar pelo WhatsApp (+55 16 98877-9241)
+              Agilizar pelo WhatsApp 
             </a>
 
             <button
@@ -173,7 +180,7 @@ export default function ContactForm({ preselectedService }) {
                 id="telefone"
                 name="telefone"
                 required
-                placeholder="(16) 98877-9241"
+                placeholder="(16) 99123-0101"
                 value={formData.telefone}
                 onChange={handleChange}
               />

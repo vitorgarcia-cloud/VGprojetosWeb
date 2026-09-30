@@ -5,7 +5,7 @@ export const companyData = {
   shortDescription: 'Soluções completas em engenharia virtual, projetos CAD paramétricos e pranchas técnicas executivas prontas para fabricação.',
   aboutDescription: 'Somos um escritório especializado em transformar ideias e demandas industriais em projetos 3D confiáveis e detalhamentos técnicos de máxima exatidão. Atuamos com os principais softwares de engenharia do mercado, garantindo conformidade com normas técnicas e redução expressiva de retrabalho na linha de produção.',
   email: 'vgprojetos10@gmail.com',
-  phone: '+55 (16) 98877-9241',
+  phone: '(16) 98877-9241',
   location: 'São Carlos/SP - Atendimento para todo o Brasil',
   workingHours: 'Disponível',
   stats: [
