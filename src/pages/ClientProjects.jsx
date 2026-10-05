@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { clientsProjectsData } from '../data/clientProjectsData';
 import { ClientLogo } from '../components/common/ClientsCarousel';
 import './ClientProjects.css';
 
-// Componente de Imagem Técnica (Antes / Depois)
+// Componente de Imagem Técnica (Desktop)
 function ProjectImagePlaceholder({ type, imageInfo }) {
   const isBefore = type === 'before';
   const imageUrl = imageInfo?.url || imageInfo?.image;
@@ -27,8 +27,6 @@ function ProjectImagePlaceholder({ type, imageInfo }) {
         ) : (
           <>
             <div className="blueprint-grid" />
-
-            {/* Gráfico / Ícone técnico simulando arquivo CAD quando não há imagem */}
             <div className="placeholder-visual">
               {isBefore ? (
                 <svg viewBox="0 0 120 120" className="cad-icon-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,6 +57,142 @@ function ProjectImagePlaceholder({ type, imageInfo }) {
       <div className="image-card-caption">
         <h5 className="image-caption-title">{imageInfo?.title}</h5>
         <p className="image-caption-desc">{imageInfo?.description}</p>
+      </div>
+    </div>
+  );
+}
+
+// Componente de Imagens Antes & Depois com Setinhas Simples (Mobile & Tablet)
+function BeforeAfterSimpleMobile({ beforeImage, afterImage }) {
+  const [activeView, setActiveView] = useState('before'); // 'before' | 'after'
+
+  const beforeUrl = beforeImage?.url || beforeImage?.image;
+  const afterUrl = afterImage?.url || afterImage?.image;
+
+  const isBefore = activeView === 'before';
+  const currentImageInfo = isBefore ? beforeImage : afterImage;
+  const currentUrl = isBefore ? beforeUrl : afterUrl;
+
+  const toggleView = () => {
+    setActiveView((prev) => (prev === 'before' ? 'after' : 'before'));
+  };
+
+  return (
+    <div className={`before-after-simple-card ${isBefore ? 'shadow-before-active' : 'shadow-after-active'}`}>
+      {/* Barra Superior com Status e Controle por Setinhas */}
+      <div className="simple-card-header">
+        <div className="simple-status-badge">
+          <span className={`image-tag ${isBefore ? 'tag-before' : 'tag-after'}`}>
+            {isBefore ? 'ANTES' : 'DEPOIS'}
+          </span>
+          <span className="simple-step-indicator">
+            {isBefore ? '1 / 2' : '2 / 2'}
+          </span>
+        </div>
+      </div>
+
+      {/* Canvas da Imagem no mesmo lugar com setinhas flutuantes */}
+      <div className="simple-canvas-wrapper" onClick={toggleView}>
+        {/* Setinha Flutuante Esquerda */}
+        <button
+          type="button"
+          className="simple-floating-arrow arrow-left"
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleView();
+          }}
+          aria-label="Imagem Anterior"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+
+        {currentUrl ? (
+          <img
+            src={currentUrl}
+            alt={currentImageInfo?.title || (isBefore ? 'Antes' : 'Depois')}
+            className={`simple-canvas-img ${isBefore ? 'img-red-shadow' : 'img-green-shadow'}`}
+          />
+        ) : (
+          <div className={`simple-fallback-canvas ${isBefore ? 'fallback-red' : 'fallback-green'}`}>
+            <div className="blueprint-grid" />
+            <div className="placeholder-visual">
+              {isBefore ? (
+                <svg viewBox="0 0 120 120" className="cad-icon-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="25" y="25" width="70" height="70" stroke="#f87171" strokeWidth="1.5" strokeDasharray="4 4" />
+                  <circle cx="60" cy="60" r="18" stroke="#f87171" strokeWidth="1.5" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 120 120" className="cad-icon-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polygon points="60,20 95,40 95,80 60,100 25,80 25,40" stroke="#4ade80" strokeWidth="1.8" fill="rgba(74, 222, 128, 0.08)" />
+                  <line x1="60" y1="20" x2="60" y2="100" stroke="#4ade80" strokeWidth="1.2" strokeDasharray="3 2" />
+                  <circle cx="60" cy="60" r="12" fill="none" stroke="#ffffff" strokeWidth="1.4" />
+                </svg>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Setinha Flutuante Direita */}
+        <button
+          type="button"
+          className="simple-floating-arrow arrow-right"
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleView();
+          }}
+          aria-label="Próxima Imagem"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Legenda da Imagem */}
+      <div className="simple-card-caption">
+        <h5 className="simple-caption-title">{currentImageInfo?.title || (isBefore ? 'Situação Prévia' : 'Solução Executada')}</h5>
+        <p className="simple-caption-desc">{currentImageInfo?.description}</p>
+        <span className="simple-hint-text">
+          {isBefore ? 'Clique na setinha para ver DEPOIS →' : '← Clique na setinha para ver ANTES'}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+// Componente Accordion/Dropbox para Mobile & Tablet
+function MethodologyAccordionItemMobile({ step, type, title, subtitle, content }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className={`methodology-accordion-item card-${type} ${isOpen ? 'is-open' : 'is-closed'}`}>
+      <button
+        type="button"
+        className="methodology-accordion-header"
+        onClick={() => setIsOpen((prev) => !prev)}
+        aria-expanded={isOpen}
+      >
+        <div className="accordion-header-left">
+          <span className="methodology-step">{step}</span>
+          <span className="methodology-title">{title}</span>
+        </div>
+        <div className="accordion-toggle-indicator">
+          <span className="toggle-label">{isOpen ? 'Ocultar' : 'Ver detalhes'}</span>
+          <span className="accordion-chevron-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </span>
+        </div>
+      </button>
+
+      <div className={`methodology-accordion-body ${isOpen ? 'visible' : ''}`}>
+        <div className="methodology-body-content">
+          <h5 className="methodology-subtitle">{subtitle}</h5>
+          <p className="methodology-text">{content}</p>
+        </div>
       </div>
     </div>
   );
@@ -105,7 +239,6 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
       {/* Hero da Página de Projetos */}
       <section className="client-projects-hero">
         <div className="container">
-
           <div className="projects-hero-main">
             <h1 className="projects-page-title">
               Projetos Realizados & Metodologia Técnica
@@ -197,8 +330,8 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
                       </div>
                     </div>
 
-                    {/* Grade de Metodologia: Problema, Solução Técnica, Resultado (Sem Emojis) */}
-                    <div className="methodology-grid">
+                    {/* --- DESKTOP ONLY: Metodologia em 3 Caixas Lado a Lado --- */}
+                    <div className="methodology-grid methodology-desktop-only">
                       {/* Coluna 1: Problema */}
                       <div className="methodology-card card-problem">
                         <div className="methodology-card-header">
@@ -227,13 +360,40 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
                       </div>
                     </div>
 
-                    {/* Comparativo Visual: 2 Imagens (Antes e Depois) */}
+                    {/* --- MOBILE & TABLET ONLY: Accordion / Dropbox --- */}
+                    <div className="methodology-accordion-group methodology-mobile-only">
+                      <MethodologyAccordionItemMobile
+                        step="01. Problema"
+                        type="problem"
+                        title="O Desafio Inicial"
+                        subtitle="Cenário Encontrado"
+                        content={project.problem}
+                      />
+                      <MethodologyAccordionItemMobile
+                        step="02. Solução Técnica"
+                        type="solution"
+                        title="Engenharia Aplicada"
+                        subtitle="Metodologia & Execução"
+                        content={project.technicalSolution}
+                      />
+                      <MethodologyAccordionItemMobile
+                        step="03. Resultado"
+                        type="result"
+                        title="Impacto & Eficiência"
+                        subtitle="Ganhos Obtidos"
+                        content={project.result}
+                      />
+                    </div>
+
+                    {/* Evidência Visual */}
                     <div className="case-study-images-section">
                       <div className="case-images-header">
                         <h4>Evidência Visual - (Antes e Depois)</h4>
+                        <span className="case-images-note mobile-only-inline">Clique na setinha para alternar</span>
                       </div>
 
-                      <div className="before-after-grid">
+                      {/* --- DESKTOP ONLY: 2 Imagens Lado a Lado --- */}
+                      <div className="before-after-grid images-desktop-only">
                         <ProjectImagePlaceholder
                           type="before"
                           imageInfo={project.images.before}
@@ -241,6 +401,14 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
                         <ProjectImagePlaceholder
                           type="after"
                           imageInfo={project.images.after}
+                        />
+                      </div>
+
+                      {/* --- MOBILE & TABLET ONLY: Setinhas para Alternar --- */}
+                      <div className="images-mobile-only">
+                        <BeforeAfterSimpleMobile
+                          beforeImage={project.images.before}
+                          afterImage={project.images.after}
                         />
                       </div>
                     </div>
