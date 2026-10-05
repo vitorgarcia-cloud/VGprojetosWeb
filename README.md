@@ -9,7 +9,7 @@ Website institucional e plataforma de portfólio para a **VG Projetos**, escrit�
 
 ---
 
-## 📌 Sumário
+##  Sumário
 - [Demonstração & Recursos](#-demonstração--recursos)
 - [Arquitetura & Tecnologias](#-arquitetura--tecnologias)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
@@ -20,9 +20,9 @@ Website institucional e plataforma de portfólio para a **VG Projetos**, escrit�
 
 ---
 
-## 🚀 Demonstração & Recursos
+##  Demonstração & Recursos
 
-### 🌟 Destaques do Site:
+###  Destaques do Site:
 * **Página Inicial (Home):** Hero banner moderno com estatísticas corporativas, chamada para ação imediata e catálogo resumido de especialidades técnicas.
 * **Catálogo Completo de Serviços:** Apresentação detalhada dos 8 principais serviços oferecidos (Modelagem Paramétrica, Detalhamento 2D, Caldeiraria, Renderização 3D, Engenharia Reversa, USINAGEM CNC/Laser, Compatibilização e Projetos Especiais).
 * **Estudos de Caso & Portfólio (Antes / Depois):** Galeria interativa de projetos por cliente com metodologia estruturada (Desafio Inicial &rarr; Solução Técnica &rarr; Resultado Alcançado) e comparativo visual das peças/conjuntos.
@@ -32,7 +32,7 @@ Website institucional e plataforma de portfólio para a **VG Projetos**, escrit�
 
 ---
 
-## 🛠️ Arquitetura & Tecnologias
+##  Arquitetura & Tecnologias
 
 O projeto é uma **Single Page Application (SPA)** construída com tecnologias web modernas focado em altíssimo desempenho e tempo de carregamento instantâneo.
 
@@ -46,7 +46,7 @@ O projeto é uma **Single Page Application (SPA)** construída com tecnologias w
 
 ---
 
-## 📁 Estrutura do Projeto
+##  Estrutura do Projeto
 
 ```text
 VGprojetosWeb/
@@ -77,7 +77,7 @@ VGprojetosWeb/
 
 ---
 
-## 💻 Como Executar o Projeto
+##  Como Executar o Projeto
 
 ### Pré-requisitos
 * Node.js (versão 18.0.0 ou superior)
@@ -114,7 +114,7 @@ VGprojetosWeb/
 
 ---
 
-## 🔐 Variáveis de Ambiente
+##  Variáveis de Ambiente
 
 Crie um arquivo `.env` na raiz do projeto com base no `.env.example`:
 
@@ -128,7 +128,7 @@ VITE_EMAILJS_PUBLIC_KEY=sua_public_key
 
 ---
 
-## ✍️ Manutenção e Atualização de Conteúdos
+##  Manutenção e Atualização de Conteúdos
 
 Para alterar telefones, e-mail de contato, adicionar novos serviços ou atualizar imagens dos projetos realizados:
 
@@ -138,6 +138,6 @@ Para alterar telefones, e-mail de contato, adicionar novos serviços ou atualiza
 
 ---
 
-## 📄 Licença
+##  Licença
 
 Este projeto é de uso exclusivo da empresa **VG Projetos**. Todos os direitos reservados.
