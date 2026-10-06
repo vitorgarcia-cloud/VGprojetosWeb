@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import WhatsAppButton from './components/common/WhatsAppButton';
+import ParticleCanvas from './components/common/ParticleCanvas';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import ClientProjects from './pages/ClientProjects';
@@ -38,6 +39,9 @@ export default function App() {
 
   return (
     <div className="app-wrapper">
+      {/* Canvas Global de Partículas Conectadas */}
+      <ParticleCanvas />
+
       {/* Barra de Navegação Padrão */}
       <Navbar activePage={activePage} onNavigate={handleNavigate} />
 

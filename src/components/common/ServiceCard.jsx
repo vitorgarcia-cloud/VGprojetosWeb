@@ -1,6 +1,21 @@
+import { useState } from 'react';
 import './ServiceCard.css';
 
 export default function ServiceCard({ service, onSelect, onViewExample }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleCardClick = (e) => {
+    // No mobile, o primeiro clique expande o card para mostrar a descrição e o botão
+    if (window.innerWidth <= 768 && !isExpanded) {
+      e.stopPropagation();
+      setIsExpanded(true);
+      return;
+    }
+    if (onSelect) {
+      onSelect(service);
+    }
+  };
+
   const handleViewExampleClick = (e) => {
     e.stopPropagation();
     if (onViewExample) {
@@ -9,7 +24,10 @@ export default function ServiceCard({ service, onSelect, onViewExample }) {
   };
 
   return (
-    <div className="service-card" onClick={() => onSelect && onSelect(service)}>
+    <div
+      className={`service-card ${isExpanded ? 'is-expanded' : ''}`}
+      onClick={handleCardClick}
+    >
       <div
         className="service-card-bg"
         style={{ backgroundImage: `url(${service.image?.startsWith('/') ? service.image : '/' + service.image})` }}

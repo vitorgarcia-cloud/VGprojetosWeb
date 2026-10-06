@@ -53,6 +53,7 @@
 .projects-page-title {
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   margin: 16px 0 12px;
+  width: 1200px;
 }
 
 .projects-page-lead {
@@ -355,7 +356,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--text-muted);
+  color: white;
 }
 
 .methodology-title {
@@ -855,13 +856,13 @@
 
 /* CTA Bottom */
 .client-projects-cta {
-  padding: 20px 0;
+  margin-top: -80px;
 }
 
 .projects-cta-box {
   padding: 44px;
   border-radius: var(--radius-lg);
-  background: var(--bg-card);
+  background-color: rgba(19, 22, 28, 0.7);
   border: 1px solid var(--border-light);
   display: flex;
   justify-content: space-between;
@@ -881,8 +882,14 @@
 
 .projects-cta-actions {
   display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 260px;
+}
+
+.projects-cta-actions .btn {
+  width: 100%;
+  text-align: center;
 }
 
 /* --- REGRAS DE VISIBILIDADE: DESKTOP vs MOBILE/TABLET --- */
@@ -927,6 +934,10 @@
 
   .mobile-only-inline {
     display: inline-block !important;
+  }
+
+  .service-type-pill {
+    display: none !important;
   }
 
   .client-projects-hero {

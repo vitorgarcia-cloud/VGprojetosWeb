@@ -12,16 +12,13 @@ export default function Home({ onNavigate }) {
       <section className="hero-banner">
         <div className="hero-glow-overlay" />
         <div className="container hero-container">
-          <div className="hero-badge-wrapper">
-            <span className="badge">Engenharia Virtual & CAD de Precisão</span>
-          </div>
 
           <h1 className="hero-title">
             Modelagem 3D e Detalhamento Técnico para Projetos
           </h1>
 
           <p className="hero-description">
-            {companyData.shortDescription} Transformamos conceitos em arquivos executivos prontos para usinagem, corte a laser e montagem industrial.
+            {companyData.shortDescription} Transformamos ideias em soluções reais!
           </p>
 
           <div className="hero-cta-group">
@@ -58,7 +55,6 @@ export default function Home({ onNavigate }) {
         <div className="container">
           <div className="section-header-row">
             <div>
-              <span className="badge">Nossas Soluções</span>
               <h2 className="section-title">Especialidades Técnicas</h2>
             </div>
             <button
@@ -82,6 +78,8 @@ export default function Home({ onNavigate }) {
           </div>
         </div>
       </section>
+
+      {/* Gradiente Interligando a Prévia de Serviços e a CTA */}
 
       {/* Banner de Chamada para Ação Intermediário */}
       <section className="home-cta-section">

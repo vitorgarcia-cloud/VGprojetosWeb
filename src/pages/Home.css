@@ -5,16 +5,19 @@
 /* Hero Banner */
 .hero-banner {
   position: relative;
-  padding: 100px 0 80px;
+  padding: 40px 0 20px;
   background: radial-gradient(circle at 50% 20%, rgba(35, 41, 54, 0.45) 0%, rgba(11, 12, 16, 0.95) 80%);
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 0px var(--border-light);
   overflow: hidden;
   background-image: url('/vgWallpaper.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  min-height: 80vh;
+  min-height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 
@@ -24,7 +27,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: 600px;
-  height: 350px;
+  height: 500px;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 70%);
   pointer-events: none;
 }
@@ -36,6 +39,8 @@
   text-align: center;
   position: relative;
   z-index: 2;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .hero-badge-wrapper {
@@ -43,39 +48,44 @@
 }
 
 .hero-title {
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
   font-weight: 700;
   max-width: 960px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   letter-spacing: -0.03em;
   background: linear-gradient(180deg, #ffffff 40%, #a0a8b7 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 1)) drop-shadow(0 0 25px rgba(0, 0, 0, 0.95));
 }
 
 .hero-description {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  max-width: 720px;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  max-width: 900px;
   color: var(--text-secondary);
-  margin-bottom: 36px;
+  margin-bottom: 24px;
   line-height: 1.6;
+  text-shadow: 0 4px 15px #000000, 0 2px 6px #000000;
 }
 
 .hero-cta-group {
   display: flex;
   gap: 16px;
-  margin-bottom: 64px;
+  margin: clamp(20px, 4vh, 48px) 0;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .hero-stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   width: 100%;
   max-width: 900px;
-  padding-top: 40px;
+  padding: 16px 10px 0;
+  margin-bottom: 0;
+  margin-top: auto;
   border-top: 1px solid var(--border-light);
 }
 
@@ -91,12 +101,14 @@
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--text-primary);
+  text-shadow: 0 4px 12px #000000, 0 2px 6px #000000;
 }
 
 .stat-label {
   font-size: 0.8rem;
   color: var(--text-muted);
   text-align: center;
+  text-shadow: 0 2px 8px #000000;
 }
 
 /* Prévia de Serviços */
@@ -116,6 +128,7 @@
 .section-title {
   font-size: 2rem;
   margin-top: 10px;
+  text-shadow: 0 4px 15px #000000, 0 2px 6px #000000;
 }
 
 .services-grid-4 {
@@ -126,11 +139,12 @@
 
 /* CTA Box */
 .home-cta-section {
-  padding: 40px 0 80px;
+  margin-top: -40px;
+  margin-bottom: 40px;
 }
 
 .cta-box {
-  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-subtle) 100%);
+  background-color: rgba(19, 22, 28, 0.7);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-lg);
   padding: 48px;
@@ -144,11 +158,13 @@
 .cta-box-text h2 {
   font-size: 1.6rem;
   margin-bottom: 8px;
+  text-shadow: 0 4px 15px #000000, 0 2px 6px #000000;
 }
 
 .cta-box-text p {
   color: var(--text-secondary);
   font-size: 0.95rem;
+  text-shadow: 0 2px 8px #000000;
 }
 
 @media (max-width: 1024px) {
@@ -163,6 +179,11 @@
 }
 
 @media (max-width: 640px) {
+  .hero-banner {
+    min-height: auto;
+    padding: 40px 0 20px;
+  }
+
   .services-grid-4 {
     grid-template-columns: 1fr;
   }
@@ -170,6 +191,7 @@
   .hero-cta-group {
     flex-direction: column;
     width: 100%;
+    margin: 28px 0;
   }
 
   .hero-cta-group .btn {

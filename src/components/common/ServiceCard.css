@@ -2,7 +2,7 @@
   position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
-  height: 330px;
+  height: 450px;
   background-color: var(--bg-card);
   border: 1px solid var(--border-light);
   cursor: pointer;
@@ -29,7 +29,8 @@
   transition: transform var(--transition-slow);
 }
 
-.service-card:hover .service-card-bg {
+.service-card:hover .service-card-bg,
+.service-card.is-expanded .service-card-bg {
   transform: scale(1.08);
 }
 
@@ -48,7 +49,8 @@
   transition: background var(--transition-normal);
 }
 
-.service-card:hover .service-card-overlay {
+.service-card:hover .service-card-overlay,
+.service-card.is-expanded .service-card-overlay {
   background: linear-gradient(
     180deg,
     rgba(11, 12, 16, 0.4) 0%,
@@ -83,7 +85,7 @@
   transition: color var(--transition-fast);
 }
 
-/* Descrição oculta que expande/aparece suavemente no hover */
+/* Descrição oculta que expande/aparece suavemente no hover ou quando expandido no mobile */
 .service-desc-wrapper {
   max-height: 0;
   opacity: 0;
@@ -91,8 +93,9 @@
   transition: max-height var(--transition-normal), opacity var(--transition-normal);
 }
 
-.service-card:hover .service-desc-wrapper {
-  max-height: 180px;
+.service-card:hover .service-desc-wrapper,
+.service-card.is-expanded .service-desc-wrapper {
+  max-height: 220px;
   opacity: 1;
   margin-top: 8px;
 }
@@ -137,4 +140,10 @@
   border-color: var(--accent-white);
   transform: translateY(-2px);
   box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 640px) {
+  .service-category {
+    display: none !important;
+  }
 }

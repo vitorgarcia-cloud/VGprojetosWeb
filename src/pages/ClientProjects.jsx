@@ -176,7 +176,6 @@ function MethodologyAccordionItemMobile({ step, type, title, subtitle, content }
       >
         <div className="accordion-header-left">
           <span className="methodology-step">{step}</span>
-          <span className="methodology-title">{title}</span>
         </div>
         <div className="accordion-toggle-indicator">
           <span className="toggle-label">{isOpen ? 'Ocultar' : 'Ver detalhes'}</span>
@@ -337,7 +336,6 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
                         <div className="methodology-card-header">
                           <span className="methodology-step">01. O Problema</span>
                         </div>
-                        <h4 className="methodology-title">Desafio Inicial</h4>
                         <p className="methodology-text">{project.problem}</p>
                       </div>
 
@@ -346,7 +344,6 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
                         <div className="methodology-card-header">
                           <span className="methodology-step">02. Solução Técnica</span>
                         </div>
-                        <h4 className="methodology-title">Engenharia Aplicada</h4>
                         <p className="methodology-text">{project.technicalSolution}</p>
                       </div>
 
@@ -355,7 +352,6 @@ export default function ClientProjects({ onNavigate, targetServiceId, targetClie
                         <div className="methodology-card-header">
                           <span className="methodology-step">03. O Resultado</span>
                         </div>
-                        <h4 className="methodology-title">Impacto e Eficiência</h4>
                         <p className="methodology-text">{project.result}</p>
                       </div>
                     </div>
