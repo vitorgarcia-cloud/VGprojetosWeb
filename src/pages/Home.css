@@ -180,7 +180,7 @@
 
 @media (max-width: 640px) {
   .hero-banner {
-    min-height: auto;
+    min-height: 90vh;
     padding: 40px 0 20px;
   }
 
@@ -192,6 +192,7 @@
     flex-direction: column;
     width: 100%;
     margin: 28px 0;
+    margin-top: 200px;
   }
 
   .hero-cta-group .btn {
@@ -206,5 +207,13 @@
 
   .cta-box .btn {
     width: 100%;
+  }
+
+  .hero-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-stats-grid .stat-card:nth-child(1) {
+    display: none;
   }
 }
