@@ -2,53 +2,132 @@
   width: 100%;
 }
 
+/* Hero com a imagem original + layout superior/inferior */
 .contact-hero {
-  padding: 80px 0 40px;
-  background: radial-gradient(circle at 50% 0%, rgba(35, 41, 54, 0.3) 0%, rgba(11, 12, 16, 0.95) 100%);
-  border-bottom: 1px solid var(--border-light);
-  background-image: url('/vgBack3.jpg');
+  padding: 48px 0 40px;
+  background-image:
+    linear-gradient(180deg, var(--hero-veil) 0%, var(--hero-veil) 60%, var(--bg-main) 100%),
+    url('/vgBack3.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  min-height: 90vh;
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-hero-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  flex: 1;
+  width: 100%;
+}
+
+.contact-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 16px;
 }
 
 .contact-title {
   font-size: clamp(2rem, 4vw, 3rem);
   margin: 16px 0 12px;
+  color: var(--text-primary);
   text-shadow: 0 4px 15px #000000, 0 2px 6px #000000;
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 1)) drop-shadow(0 0 25px rgba(0, 0, 0, 0.95));
 }
 
 .contact-subtitle {
-  font-size: 1.05rem;
-  max-width: 680px;
+  font-size: 1.3rem;
+  max-width: 900px;
   color: var(--text-secondary);
   text-shadow: 0 4px 15px #000000, 0 2px 6px #000000;
 }
 
+/* Seta minimalista para baixo na mesma posição dos botões da página inicial */
+.contact-hero-arrow-wrapper {
+  margin-top: auto;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.scroll-down-arrow-btn {
+  background: var(--bg-card-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  animation: bounceDown 2.2s infinite ease-in-out;
+}
+
+.scroll-down-arrow-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-medium);
+  transform: translateY(4px);
+  color: var(--logo-blue);
+}
+
+@keyframes bounceDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-hero {
+    padding: 32px 0 24px;
+    min-height: calc(100vh - 64px);
+  }
+
+  .contact-hero-top {
+    margin-top: 8px;
+  }
+
+  .contact-hero-arrow-wrapper {
+    margin-bottom: 16px;
+  }
+}
+
 .contact-content-section {
-  padding: 80px 0 100px;
+  padding: 64px 0 96px;
 }
 
 .contact-grid-layout {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
-  gap: 48px;
+  gap: 32px;
 }
 
 /* Coluna Esquerda */
 .contact-info-panel {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 20px;
 }
 
 .contact-cards-stack {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .info-card {
@@ -56,27 +135,69 @@
   align-items: flex-start;
   gap: 16px;
   padding: 20px;
-  background-color: var(--bg-card);
+  background-color: var(--bg-card-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
-  transition: border-color var(--transition-fast);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
 }
 
 .info-card:hover {
-  border-color: var(--border-medium);
+  background-color: var(--bg-card-glass-hover);
+  transform: translateY(-2px);
+}
+
+/* Detalhes com as cores da logo nos 3 canais */
+.info-card:nth-child(1) {
+  border-left: 3px solid var(--logo-blue);
+}
+
+.info-card:nth-child(1):hover {
+  border-color: var(--logo-blue);
+}
+
+.info-card:nth-child(1) .info-card-icon {
+  color: var(--logo-blue);
+  background-color: var(--logo-blue-soft);
+}
+
+.info-card:nth-child(2) {
+  border-left: 3px solid var(--logo-green);
+}
+
+.info-card:nth-child(2):hover {
+  border-color: var(--logo-green);
+}
+
+.info-card:nth-child(2) .info-card-icon {
+  color: var(--logo-green);
+  background-color: var(--logo-green-soft);
+}
+
+.info-card:nth-child(3) {
+  border-left: 3px solid var(--logo-red);
+}
+
+.info-card:nth-child(3):hover {
+  border-color: var(--logo-red);
+}
+
+.info-card:nth-child(3) .info-card-icon {
+  color: var(--logo-red);
+  background-color: var(--logo-red-soft);
 }
 
 .info-card-icon {
   width: 42px;
   height: 42px;
-  background-color: var(--bg-subtle);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--accent-white);
+  transition: all var(--transition-fast);
 }
 
 .info-card-icon svg {
@@ -87,32 +208,35 @@
 .info-card h4 {
   font-size: 0.95rem;
   margin-bottom: 2px;
+  color: var(--text-primary);
 }
 
 .info-card-link {
   font-size: 0.95rem;
   color: var(--text-primary);
-  font-weight: 500;
   display: block;
 }
 
 .info-card-sub {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
 }
 
 .workflow-box {
-  background-color: var(--bg-card);
+  background-color: var(--bg-card-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--logo-blue);
+  border-radius: var(--radius-md);
   padding: 24px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
 }
 
 .workflow-box h4 {
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin-bottom: 16px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  color: var(--text-primary);
 }
 
 .workflow-steps {
@@ -120,17 +244,17 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
 }
 
 .workflow-steps li strong {
   color: var(--text-primary);
+  font-weight: 500;
 }
 
 @media (max-width: 960px) {
   .contact-grid-layout {
     grid-template-columns: 1fr;
-    gap: 40px;
   }
 }

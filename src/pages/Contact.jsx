@@ -3,15 +3,38 @@ import ContactForm from '../components/contact/ContactForm';
 import './Contact.css';
 
 export default function Contact() {
+  const handleScrollDown = () => {
+    const nextSection = document.querySelector('.contact-content-section');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="contact-page fade-in">
       <section className="contact-hero">
-        <div className="container">
-          <span className="badge">Canais de Atendimento</span>
-          <h1 className="contact-title">Solicite seu Orçamento Técnico</h1>
-          <p className="contact-subtitle">
-            Preencha os dados do seu projeto ou entre em contato direto pelos nossos canais corporativos. Retornamos com análise preliminar em até 24h.
-          </p>
+        <div className="container contact-hero-container">
+          <div className="contact-hero-content">
+            <h1 className="contact-title">Solicite seu Orçamento Técnico</h1>
+            <p className="contact-subtitle">
+              Preencha os dados do seu projeto ou entre em contato direto pelos nossos canais corporativos. Retornamos com análise preliminar em até 24h.
+            </p>
+          </div>
+
+          {/* Seta para baixo estilizada em SVG na posição dos botões */}
+          <div className="contact-hero-arrow-wrapper">
+            <button
+              type="button"
+              className="scroll-down-arrow-btn"
+              onClick={handleScrollDown}
+              aria-label="Rolar para formulário de contato"
+              title="Rolar para formulário de contato"
+            >
+              <svg width="22" height="18" viewBox="0 0 24 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.5 4.8C2.5 4.8 1.9 6 2.5 6.9L10.8 17.5C11.3 18.2 12.7 18.2 13.2 17.5L21.5 6.9C22.1 6 21.5 4.8 20.5 4.8H3.5Z" />
+              </svg>
+            </button>
+          </div>
         </div>
       </section>
 

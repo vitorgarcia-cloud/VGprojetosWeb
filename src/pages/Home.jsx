@@ -10,43 +10,37 @@ export default function Home({ onNavigate }) {
     <div className="home-page fade-in">
       {/* Banner Principal / Hero */}
       <section className="hero-banner">
-        <div className="hero-glow-overlay" />
         <div className="container hero-container">
 
-          <h1 className="hero-title">
-            Modelagem 3D e Detalhamento Técnico para Projetos
-          </h1>
+          {/* Topo do Hero: Título e Descrição */}
+          <div className="hero-top-content">
+            <h1 className="hero-title">
+              Modelagem 3D e Detalhamento Técnico para Projetos
+            </h1>
 
-          <p className="hero-description">
-            {companyData.shortDescription} Transformamos ideias em soluções reais!
-          </p>
+            <p className="hero-description">
+              {companyData.shortDescription} Transformamos ideias em soluções reais!
+            </p>
+          </div>
 
+          {/* Base do Hero: Botões de Ação na parte inferior */}
           <div className="hero-cta-group">
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary btn-hero-lg"
               onClick={() => onNavigate('contato')}
             >
               Faça seu Orçamento
             </button>
             <button
               type="button"
-              className="btn btn-secondary"
+              className="btn btn-secondary btn-hero-lg"
               onClick={() => onNavigate('servicos')}
             >
               Saiba Mais
             </button>
           </div>
 
-          {/* Destaques Numéricos */}
-          <div className="hero-stats-grid">
-            {companyData.stats.map((stat, idx) => (
-              <div key={idx} className="stat-card">
-                <span className="stat-value">{stat.value}</span>
-                <span className="stat-label">{stat.label}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

@@ -1,43 +1,62 @@
-/* Design System - VG Projetos Web */
+/* Design System - VG Projetos Web (Tema Escuro Exclusivo | Minimalista Estilo Gemini) */
 :root {
-  /* Paleta de Cores: Grafite, Cinza, Preto e Branco */
-  --bg-main: #0b0c10;
-  --bg-card: #13161c;
-  --bg-card-hover: #1b1f28;
-  --bg-elevated: #181c24;
-  --bg-subtle: #20242e;
+  /* Cores de detalhe da logo (usar UMA por elemento, nunca misturadas) */
+  --logo-blue: #4c8df6;
+  --logo-red: #f2555a;
+  --logo-green: #34a853;
+
+  --logo-blue-soft: rgba(76, 141, 246, 0.14);
+  --logo-red-soft: rgba(242, 85, 90, 0.14);
+  --logo-green-soft: rgba(52, 168, 83, 0.14);
+
+  /* Tema Escuro: Preto predominante, Branco secundário */
+  --bg-main: #131314;
+  --bg-card: #1e1f20;
+  --bg-card-hover: #282a2c;
+  --bg-elevated: #1e1f20;
+  --bg-subtle: #282a2c;
+  --bg-navbar: rgba(19, 19, 20, 0.85);
+
+  /* Superfícies modernas translúcidas (Glassmorphism sutil estilo Gemini) */
+  --bg-card-glass: rgba(30, 31, 32, 0.55);
+  --bg-card-glass-hover: rgba(40, 42, 44, 0.7);
+
+  /* Véu escuro suave sobre as imagens de fundo */
+  --hero-veil: rgba(10, 10, 11, 0.32);
 
   --border-light: rgba(255, 255, 255, 0.08);
   --border-medium: rgba(255, 255, 255, 0.16);
-  --border-focus: #e0e6ed;
+  --border-focus: #e3e3e3;
 
-  --text-primary: #ffffff;
-  --text-secondary: #a0a8b7;
-  --text-muted: #697282;
+  --text-primary: #e3e3e3;
+  --text-secondary: #c4c7c5;
+  --text-muted: #8e918f;
 
-  --accent-white: #ffffff;
-  --accent-silver: #d1d5db;
-  --accent-glow: rgba(255, 255, 255, 0.05);
+  --accent-white: #e3e3e3;
+  --accent-primary: #e3e3e3;
+  --accent-inverse: #131314;
+  --accent-silver: #c4c7c5;
+  --accent-glow: rgba(255, 255, 255, 0.06);
 
-  /* Tipografia */
-  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
 
-  /* Efeitos e Transições */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  /* Tipografia (Estilo Google Gemini: limpa, neutra e sem serifa pesada) */
+  --font-heading: 'Google Sans', 'Figtree', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Google Sans Text', 'Figtree', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Cantos arredondados no estilo Gemini */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
   --radius-full: 9999px;
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.7);
-
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 
-  --container-max: 1240px;
+  --container-max: 1180px;
 }
 
 /* Reset Global */
@@ -62,6 +81,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
 /* Estrutura Base */
@@ -75,7 +95,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: radial-gradient(circle at 50% 0%, rgba(35, 41, 54, 0.35) 0%, transparent 70%);
 }
 
 .main-content {
@@ -100,7 +119,7 @@ h5,
 h6 {
   font-family: var(--font-heading);
   color: var(--text-primary);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.2;
 }
@@ -125,33 +144,28 @@ select {
   font-family: inherit;
 }
 
-/* Botões Globais */
+/* Botões Globais (pílula, sem caixa alta - estilo Gemini) */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 28px;
+  padding: 12px 26px;
   font-size: 0.95rem;
   font-weight: 500;
-  letter-spacing: 0.02em;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-full);
   cursor: pointer;
   transition: all var(--transition-fast);
-  text-transform: uppercase;
 }
 
 .btn-primary {
-  background-color: var(--accent-white);
-  color: #0b0c10;
-  border: 1px solid var(--accent-white);
+  background-color: var(--accent-primary);
+  color: var(--accent-inverse);
+  border: 1px solid var(--accent-primary);
 }
 
 .btn-primary:hover {
-  background-color: #e2e5ea;
-  border-color: #e2e5ea;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+  opacity: 0.88;
 }
 
 .btn-secondary {
@@ -161,32 +175,26 @@ select {
 }
 
 .btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-  border-color: var(--text-primary);
-  transform: translateY(-2px);
+  background-color: var(--accent-glow);
 }
 
-/* Utilitários de Tag / Badge */
+/* Badge discreta */
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
   padding: 6px 14px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-light);
+  background: var(--bg-card);
   border-radius: var(--radius-full);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--text-secondary);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 /* Animações Sutis */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(8px);
   }
 
   to {
@@ -196,5 +204,5 @@ select {
 }
 
 .fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
+  animation: fadeIn 0.35s ease-out forwards;
 }

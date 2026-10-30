@@ -30,18 +30,18 @@ function ProjectImagePlaceholder({ type, imageInfo }) {
             <div className="placeholder-visual">
               {isBefore ? (
                 <svg viewBox="0 0 120 120" className="cad-icon-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="25" y="25" width="70" height="70" stroke="#f87171" strokeWidth="1.5" strokeDasharray="4 4" />
-                  <path d="M25 25L95 95M95 25L25 95" stroke="#f87171" strokeWidth="1.2" strokeOpacity="0.5" />
-                  <circle cx="60" cy="60" r="18" stroke="#f87171" strokeWidth="1.5" />
-                  <text x="60" y="112" textAnchor="middle" fill="#f87171" fontSize="9" fontFamily="monospace">INTERFERÊNCIA / ERRO</text>
+                  <rect x="25" y="25" width="70" height="70" stroke="var(--logo-red)" strokeWidth="1.5" strokeDasharray="4 4" />
+                  <path d="M25 25L95 95M95 25L25 95" stroke="var(--logo-red)" strokeWidth="1.2" strokeOpacity="0.5" />
+                  <circle cx="60" cy="60" r="18" stroke="var(--logo-red)" strokeWidth="1.5" />
+                  <text x="60" y="112" textAnchor="middle" fill="var(--logo-red)" fontSize="9" fontFamily="monospace">INTERFERÊNCIA / ERRO</text>
                 </svg>
               ) : (
                 <svg viewBox="0 0 120 120" className="cad-icon-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <polygon points="60,20 95,40 95,80 60,100 25,80 25,40" stroke="#4ade80" strokeWidth="1.8" fill="rgba(74, 222, 128, 0.08)" />
-                  <line x1="60" y1="20" x2="60" y2="100" stroke="#4ade80" strokeWidth="1.2" strokeDasharray="3 2" />
-                  <line x1="25" y1="40" x2="95" y2="80" stroke="#4ade80" strokeWidth="1" strokeOpacity="0.4" />
-                  <circle cx="60" cy="60" r="12" fill="none" stroke="#ffffff" strokeWidth="1.4" />
-                  <text x="60" y="115" textAnchor="middle" fill="#4ade80" fontSize="9" fontFamily="monospace">MODELO APROVADO ISO</text>
+                  <polygon points="60,20 95,40 95,80 60,100 25,80 25,40" stroke="var(--logo-green)" strokeWidth="1.8" fill="var(--logo-green-soft)" />
+                  <line x1="60" y1="20" x2="60" y2="100" stroke="var(--logo-green)" strokeWidth="1.2" strokeDasharray="3 2" />
+                  <line x1="25" y1="40" x2="95" y2="80" stroke="var(--logo-green)" strokeWidth="1" strokeOpacity="0.4" />
+                  <circle cx="60" cy="60" r="12" fill="none" stroke="var(--text-primary)" strokeWidth="1.4" />
+                  <text x="60" y="115" textAnchor="middle" fill="var(--logo-green)" fontSize="9" fontFamily="monospace">MODELO APROVADO ISO</text>
                 </svg>
               )}
             </div>
@@ -120,14 +120,14 @@ function BeforeAfterSimpleMobile({ beforeImage, afterImage }) {
             <div className="placeholder-visual">
               {isBefore ? (
                 <svg viewBox="0 0 120 120" className="cad-icon-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="25" y="25" width="70" height="70" stroke="#f87171" strokeWidth="1.5" strokeDasharray="4 4" />
-                  <circle cx="60" cy="60" r="18" stroke="#f87171" strokeWidth="1.5" />
+                  <rect x="25" y="25" width="70" height="70" stroke="var(--logo-red)" strokeWidth="1.5" strokeDasharray="4 4" />
+                  <circle cx="60" cy="60" r="18" stroke="var(--logo-red)" strokeWidth="1.5" />
                 </svg>
               ) : (
                 <svg viewBox="0 0 120 120" className="cad-icon-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <polygon points="60,20 95,40 95,80 60,100 25,80 25,40" stroke="#4ade80" strokeWidth="1.8" fill="rgba(74, 222, 128, 0.08)" />
-                  <line x1="60" y1="20" x2="60" y2="100" stroke="#4ade80" strokeWidth="1.2" strokeDasharray="3 2" />
-                  <circle cx="60" cy="60" r="12" fill="none" stroke="#ffffff" strokeWidth="1.4" />
+                  <polygon points="60,20 95,40 95,80 60,100 25,80 25,40" stroke="var(--logo-green)" strokeWidth="1.8" fill="var(--logo-green-soft)" />
+                  <line x1="60" y1="20" x2="60" y2="100" stroke="var(--logo-green)" strokeWidth="1.2" strokeDasharray="3 2" />
+                  <circle cx="60" cy="60" r="12" fill="none" stroke="var(--text-primary)" strokeWidth="1.4" />
                 </svg>
               )}
             </div>

@@ -78,7 +78,7 @@ A maior vantagem desta estrutura é que **você quase não precisa mexer em lóg
 
 ---
 
-### A) Alterar Dados da Empresa, Telefone, WhatsApp e E-mail
+### A Alterar Dados da Empresa, Telefone, WhatsApp e E-mail
 * **Arquivo:** `src/data/companyData.js`
 * **O que você encontra lá:**
   ```javascript
@@ -93,7 +93,7 @@ A maior vantagem desta estrutura é que **você quase não precisa mexer em lóg
 
 ---
 
-### B) Alterar a Lista de Serviços ou Imagens de Fundo dos Cards
+### B Alterar a Lista de Serviços ou Imagens de Fundo dos Cards
 * **Arquivo:** `src/data/servicesData.js`
 * **O que você encontra lá:**
   ```javascript
@@ -111,7 +111,7 @@ A maior vantagem desta estrutura é que **você quase não precisa mexer em lóg
 
 ---
 
-### C) Alterar Textos dos Projetos e Imagens de Antes/Depois
+### C Alterar Textos dos Projetos e Imagens de Antes/Depois
 * **Arquivo:** `src/data/clientProjectsData.js`
 * **Estrutura de cada projeto:**
   ```javascript
@@ -144,7 +144,7 @@ A maior vantagem desta estrutura é que **você quase não precisa mexer em lóg
 
 ---
 
-### D) Alterar as Logos dos Clientes
+### D Alterar as Logos dos Clientes
 * **Arquivo:** `src/components/common/ClientsCarousel.jsx`
 * Atualmente as logos são ícones SVG gerados por código dentro do componente `ClientLogo`.
 * Se você quiser usar **imagens PNG ou SVG normais**:

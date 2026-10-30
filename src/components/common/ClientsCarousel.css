@@ -1,13 +1,15 @@
 .clients-carousel-section {
   margin-top: 60px;
-  padding: 40px 32px;
-  padding-top: 10px;
-  background-color: rgba(19, 22, 28, 0.7);
+  padding: 12px 32px;
+  background-color: var(--bg-card-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border-light);
+  border-left: 3px solid var(--logo-blue);
   border-radius: var(--radius-lg);
-  backdrop-filter: blur(12px);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
 .clients-carousel-header {
@@ -24,8 +26,9 @@
 }
 
 .clients-carousel-title {
-  font-size: 1.6rem;
-  margin: 10px 0 6px;
+  font-size: 1.5rem;
+  margin: 4px 0 6px;
+  color: var(--text-primary);
 }
 
 .clients-carousel-subtitle {
@@ -60,7 +63,7 @@
 
 .clients-marquee-track {
   display: flex;
-  gap: 150px;
+  gap: 140px;
   width: max-content;
   animation: scrollMarquee 35s linear infinite;
 }
@@ -79,35 +82,47 @@
   }
 }
 
+:root {
+  /* Tamanho dos quadradinhos de logotipo no carrossel (ajuste aqui) */
+  --carousel-logo-size: 46px;
+}
+
 /* Item de logotipo único no carrossel */
 .client-carousel-item-only-logo {
+  /* Tamanho quadrado configurável via variável */
+  width: var(--carousel-logo-size);
+  height: var(--carousel-logo-size);
+  min-width: var(--carousel-logo-size);
+  min-height: var(--carousel-logo-size);
+  aspect-ratio: 1 / 1;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-card);
-  border: 2px solid var(--border-light);
+  background: var(--bg-card-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  padding: 0px;
+  padding: 0;
+  overflow: hidden;
   cursor: pointer;
   transition: all var(--transition-fast);
   user-select: none;
+  box-sizing: border-box;
 }
 
 .client-carousel-item-only-logo:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--accent-white);
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.1);
+  background: var(--bg-card-glass-hover);
+  border-color: var(--logo-blue);
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 4px 14px rgba(76, 141, 246, 0.25);
 }
 
-/* Logo container com dimensões exatas de 30x30 */
+/* Logo container dentro do quadradinho */
 .client-logo-box-30 {
-  width: 30px;
-  height: 30px;
-  min-width: 30px;
-  min-height: 30px;
-  max-width: 30px;
-  max-height: 30px;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,8 +131,8 @@
 }
 
 .client-logo-badge-30 {
-  width: 30px;
-  height: 30px;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

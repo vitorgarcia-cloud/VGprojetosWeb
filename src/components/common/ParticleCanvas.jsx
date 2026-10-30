@@ -13,20 +13,31 @@ export default function ParticleCanvas() {
     let pts = [];
     const mouse = { x: null, y: null, active: false };
 
+    const baseRgb = '255, 255, 255';
+    const accentColors = [
+      '#2563eb', // Azul da logo
+      '#e52528', // Vermelho da logo
+      '#16a34a', // Verde da logo
+    ];
+
     const medir = () => {
       cv.width = window.innerWidth;
       cv.height = window.innerHeight;
-      
-      // Quantidade proporcional à área da tela
-      const qtd = Math.min(85, Math.max(35, Math.round((cv.width * cv.height) / 14000)));
+
+      // Quantidade minimalista e proporcional à área da tela
+      const qtd = Math.min(65, Math.max(28, Math.round((cv.width * cv.height) / 18000)));
       pts = [];
       for (let i = 0; i < qtd; i++) {
+        // Alguns pontos sutis recebem as cores da logo (azul, vermelho, verde)
+        const hasAccent = i % 6 === 0;
+        const accentColor = hasAccent ? accentColors[(i / 6) % accentColors.length] : null;
         pts.push({
           x: Math.random() * cv.width,
           y: Math.random() * cv.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          radius: 1.6 + Math.random() * 0.4
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          radius: hasAccent ? 2.1 : 1.4 + Math.random() * 0.4,
+          color: accentColor,
         });
       }
     };
@@ -51,7 +62,7 @@ export default function ParticleCanvas() {
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseleave', handleMouseLeave);
 
-    const connectDistance = 110;
+    const connectDistance = 115;
 
     const render = () => {
       ctx.clearRect(0, 0, cv.width, cv.height);
@@ -64,7 +75,7 @@ export default function ParticleCanvas() {
         if (p.x < 0 || p.x > cv.width) p.vx *= -1;
         if (p.y < 0 || p.y > cv.height) p.vy *= -1;
 
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+        ctx.fillStyle = p.color || `rgba(${baseRgb}, 0.7)`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fill();
@@ -78,9 +89,9 @@ export default function ParticleCanvas() {
           const d = Math.hypot(dx, dy);
 
           if (d < connectDistance) {
-            const alpha = 0.25 * (1 - d / connectDistance);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
-            ctx.lineWidth = 1;
+            const alpha = 0.18 * (1 - d / connectDistance);
+            ctx.strokeStyle = `rgba(${baseRgb}, ${alpha})`;
+            ctx.lineWidth = 0.8;
             ctx.beginPath();
             ctx.moveTo(pts[i].x, pts[i].y);
             ctx.lineTo(pts[j].x, pts[j].y);
@@ -92,9 +103,9 @@ export default function ParticleCanvas() {
         if (mouse.active && mouse.x !== null && mouse.y !== null) {
           const dMouse = Math.hypot(pts[i].x - mouse.x, pts[i].y - mouse.y);
           if (dMouse < connectDistance * 1.2) {
-            const alphaMouse = 0.35 * (1 - dMouse / (connectDistance * 1.2));
-            ctx.strokeStyle = `rgba(255, 255, 255, ${alphaMouse})`;
-            ctx.lineWidth = 1.2;
+            const alphaMouse = 0.3 * (1 - dMouse / (connectDistance * 1.2));
+            ctx.strokeStyle = `rgba(${baseRgb}, ${alphaMouse})`;
+            ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(pts[i].x, pts[i].y);
             ctx.lineTo(mouse.x, mouse.y);

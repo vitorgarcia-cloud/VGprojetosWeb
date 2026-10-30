@@ -1,13 +1,16 @@
 .contact-form-container {
-  background-color: var(--bg-card);
+  background-color: var(--bg-card-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
+  border-top: 3px solid var(--logo-blue);
+  border-radius: var(--radius-lg);
   padding: 36px;
   min-height: 520px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
 .budget-form {
@@ -51,8 +54,8 @@
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: var(--accent-white);
-  box-shadow: 0 0 0 1px var(--accent-white);
+  border-color: var(--logo-blue);
+  box-shadow: 0 0 0 1px var(--logo-blue);
 }
 
 .form-group textarea {
@@ -63,7 +66,7 @@
 
 .form-group select {
   cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23a0a8b7'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2371717a'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   background-size: 16px;
@@ -75,6 +78,7 @@
   padding: 14px;
   font-size: 0.95rem;
   margin-top: 8px;
+  border-radius: var(--radius-full);
 }
 
 .btn-submit-form:disabled {
@@ -123,9 +127,9 @@
 }
 
 .btn-whatsapp-success {
-  background-color: #25D366;
+  background-color: var(--logo-green);
   color: #ffffff;
-  border: 1px solid #25D366;
+  border: 1px solid var(--logo-green);
   padding: 12px 20px;
   font-weight: 600;
   border-radius: var(--radius-sm);
@@ -134,18 +138,16 @@
 }
 
 .btn-whatsapp-success:hover {
-  background-color: #20ba5a;
-  border-color: #20ba5a;
+  opacity: 0.92;
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
 }
 
 /* Alerta de Erro */
 .form-error-alert {
-  background-color: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: #fca5a5;
+  background-color: var(--logo-red-soft);
+  border: 1px solid var(--logo-red);
+  color: var(--logo-red);
   padding: 16px;
   border-radius: var(--radius-sm);
   font-size: 0.88rem;

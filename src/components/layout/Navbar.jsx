@@ -20,7 +20,7 @@ export default function Navbar({ activePage, onNavigate }) {
   return (
     <header className="navbar-header">
       <div className="container navbar-container">
-        {/* Logo / Placeholder */}
+        {/* Logo */}
         <a
           href="#inicio"
           className="navbar-logo"
@@ -28,7 +28,9 @@ export default function Navbar({ activePage, onNavigate }) {
           title="VG Projetos - Página Inicial"
         >
           <div className="logo-placeholder">
-            <img src="/vgLogo.png" alt="VG Projetos Logo" width={35} height={35} />
+            <div className="logo-img-box">
+              <img src="/vgLogo.png" alt="VG Projetos Logo" width={34} height={34} />
+            </div>
 
             <div className="logo-text">
               <span className="brand-name">VG</span>
@@ -44,18 +46,18 @@ export default function Navbar({ activePage, onNavigate }) {
               <li key={item.id} className="nav-item">
                 <button
                   type="button"
-                  className={`nav-link ${activePage === item.id ? 'active' : ''}`}
+                  className={`nav-link ${activePage === item.id ? `active active-${item.id}` : ''}`}
                   onClick={(e) => handleNavClick(item.id, e)}
                 >
                   {item.label}
-                  {activePage === item.id && <span className="active-indicator" />}
+                  {activePage === item.id && <span className={`active-indicator indicator-${item.id}`} />}
                 </button>
               </li>
             ))}
           </ul>
         </nav>
 
-        {/* Botão CTA Rápido Navbar */}
+        {/* Ações da Navbar: CTA Orçamento */}
         <div className="navbar-action">
           <button
             type="button"
@@ -66,17 +68,19 @@ export default function Navbar({ activePage, onNavigate }) {
           </button>
         </div>
 
-        {/* Botão Mobile Toggle */}
-        <button
-          type="button"
-          className={`mobile-toggle ${mobileMenuOpen ? 'open' : ''}`}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Abrir Menu"
-        >
-          <span className="toggle-bar"></span>
-          <span className="toggle-bar"></span>
-          <span className="toggle-bar"></span>
-        </button>
+        {/* Botão Mobile Hamburger */}
+        <div className="mobile-controls">
+          <button
+            type="button"
+            className={`mobile-toggle ${mobileMenuOpen ? 'open' : ''}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Abrir Menu"
+          >
+            <span className="toggle-bar"></span>
+            <span className="toggle-bar"></span>
+            <span className="toggle-bar"></span>
+          </button>
+        </div>
       </div>
 
       {/* Menu Mobile Dropdown */}
@@ -87,7 +91,7 @@ export default function Navbar({ activePage, onNavigate }) {
               <li key={item.id}>
                 <button
                   type="button"
-                  className={`mobile-nav-link ${activePage === item.id ? 'active' : ''}`}
+                  className={`mobile-nav-link ${activePage === item.id ? `active active-${item.id}` : ''}`}
                   onClick={(e) => handleNavClick(item.id, e)}
                 >
                   {item.label}

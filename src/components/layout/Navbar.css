@@ -2,9 +2,9 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: rgba(11, 12, 16, 0.493);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: var(--bg-navbar);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-light);
   transition: all var(--transition-fast);
 }
@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
+  height: 50px;
 }
 
 /* Logo */
@@ -30,9 +30,12 @@
   gap: 12px;
 }
 
-.logo-icon {
-  width: 36px;
-  height: 36px;
+.logo-img-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all var(--transition-fast);
 }
 
 .logo-text {
@@ -65,8 +68,6 @@
   display: flex;
   align-items: center;
   gap: 40px;
-  margin-right: 180px;
-  width: 110px;
 }
 
 .nav-item {
@@ -77,9 +78,9 @@
   background: none;
   border: none;
   color: var(--text-secondary);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   cursor: pointer;
   padding: 8px 0;
   transition: color var(--transition-fast);
@@ -96,29 +97,64 @@
   color: var(--text-primary);
 }
 
+.nav-link.active.active-inicio {
+  color: var(--logo-blue);
+}
+
+.nav-link.active.active-servicos {
+  color: var(--logo-green);
+}
+
+.nav-link.active.active-contato {
+  color: var(--logo-red);
+}
+
 .active-indicator {
   position: absolute;
-  bottom: -4px;
+  bottom: -2px;
   left: 0;
   right: 0;
   height: 2px;
-  background-color: var(--accent-white);
+  background-color: var(--logo-blue);
   border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast);
 }
 
-/* Action button */
+.active-indicator.indicator-inicio {
+  background-color: var(--logo-blue);
+}
+
+.active-indicator.indicator-servicos {
+  background-color: var(--logo-green);
+}
+
+.active-indicator.indicator-contato {
+  background-color: var(--logo-red);
+}
+
+.navbar-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .btn-nav-cta {
   padding: 8px 20px;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
 }
 
 /* Mobile */
-.mobile-toggle {
+.mobile-controls {
   display: none;
+  align-items: center;
+}
+
+.mobile-toggle {
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 28px;
-  height: 20px;
+  width: 24px;
+  height: 18px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -138,11 +174,12 @@
 }
 
 @media (max-width: 768px) {
-  .navbar-nav, .navbar-action {
+  .navbar-nav,
+  .navbar-action {
     display: none;
   }
 
-  .mobile-toggle {
+  .mobile-controls {
     display: flex;
   }
 
@@ -166,7 +203,7 @@
     background: none;
     border: none;
     color: var(--text-secondary);
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     padding: 8px 0;
     cursor: pointer;
@@ -174,6 +211,18 @@
 
   .mobile-nav-link.active {
     color: var(--text-primary);
+  }
+
+  .mobile-nav-link.active.active-inicio {
+    color: var(--logo-blue);
+  }
+
+  .mobile-nav-link.active.active-servicos {
+    color: var(--logo-green);
+  }
+
+  .mobile-nav-link.active.active-contato {
+    color: var(--logo-red);
   }
 
   .mobile-cta-item {
